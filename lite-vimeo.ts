@@ -38,7 +38,7 @@ export class LiteVimeoEmbed extends HTMLElement {
     webp: HTMLSourceElement;
     jpeg: HTMLSourceElement;
   };
-  private domRefPlayButton!: HTMLButtonElement;
+  
 
   constructor() {
     super();
@@ -208,7 +208,7 @@ export class LiteVimeoEmbed extends HTMLElement {
                decoding="async"
                loading="lazy">
         </picture>
-        <button class="lvo-playbtn"></button>
+        
       </div>
     `;
     this.domRefFrame = this.shadowRoot.querySelector<HTMLDivElement>('#frame')!;
@@ -223,9 +223,9 @@ export class LiteVimeoEmbed extends HTMLElement {
         '#jpegPlaceholder',
       )!,
     };
-    this.domRefPlayButton = this.shadowRoot.querySelector<HTMLButtonElement>(
-      '.lvo-playbtn',
-    )!;
+    // this.domRefPlayButton = this.shadowRoot.querySelector<HTMLButtonElement>(
+    //   '.lvo-playbtn',
+    // )!;
   }
 
   /**
@@ -234,10 +234,10 @@ export class LiteVimeoEmbed extends HTMLElement {
   private setupComponent(): void {
     this.initImagePlaceholder();
 
-    this.domRefPlayButton.setAttribute(
-      'aria-label',
-      `${this.videoPlay}: ${this.videoTitle}`,
-    );
+    // this.domRefPlayButton.setAttribute(
+    //   'aria-label',
+    //   `${this.videoPlay}: ${this.videoTitle}`,
+    // );
     this.setAttribute('title', `${this.videoPlay}: ${this.videoTitle}`);
 
     if (this.autoLoad) {
@@ -292,7 +292,7 @@ export class LiteVimeoEmbed extends HTMLElement {
       const apValue = ((this.autoLoad && this.autoPlay) || (!this.autoLoad)) ?
                         "autoplay=1" : "";
       const srcUrl = new URL(
-        `/video/${this.videoId}?${apValue}&#t=${this.videoStartAt}&controls=0&loop=1&rel=0&showinfo=0&autohide=1&wmode=transparent&hd=1&mute=1&muted=1&background=1&showinfo=0`,
+        `/video/${this.videoId}?playlist=${this.videoId}&${apValue}&amp;autoplay=1&amp;controls=0&amp;loop=1&amp;rel=0&amp;showinfo=0&amp;autohide=1&amp;wmode=transparent&amp;hd=1&amp;mute=1&amp;muted=1&amp;background=1&amp;showinfo=0`,
         "https://player.vimeo.com/"
       );
 
