@@ -19,7 +19,6 @@ export declare class LiteVimeoEmbed extends HTMLElement {
     private iframeLoaded;
     private domRefFrame;
     private domRefImg;
-    private domRefPlayButton;
     constructor();
     static get observedAttributes(): string[];
     connectedCallback(): void;

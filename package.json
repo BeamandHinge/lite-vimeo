@@ -4,7 +4,7 @@
   "author": "Alex Russell <slightlyoff@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:BeamandHinge/lite-vimeo.git"
+    "url": "git+ssh://git@github.com/BeamandHinge/lite-vimeo.git"
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",

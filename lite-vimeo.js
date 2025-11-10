@@ -190,7 +190,7 @@ export class LiteVimeoEmbed extends HTMLElement {
                decoding="async"
                loading="lazy">
         </picture>
-        <button class="lvo-playbtn"></button>
+        
       </div>
     `;
         this.domRefFrame = this.shadowRoot.querySelector('#frame');
@@ -199,14 +199,19 @@ export class LiteVimeoEmbed extends HTMLElement {
             webp: this.shadowRoot.querySelector('#webpPlaceholder'),
             jpeg: this.shadowRoot.querySelector('#jpegPlaceholder'),
         };
-        this.domRefPlayButton = this.shadowRoot.querySelector('.lvo-playbtn');
+        // this.domRefPlayButton = this.shadowRoot.querySelector<HTMLButtonElement>(
+        //   '.lvo-playbtn',
+        // )!;
     }
     /**
      * Parse our attributes and fire up some placeholders
      */
     setupComponent() {
         this.initImagePlaceholder();
-        this.domRefPlayButton.setAttribute('aria-label', `${this.videoPlay}: ${this.videoTitle}`);
+        // this.domRefPlayButton.setAttribute(
+        //   'aria-label',
+        //   `${this.videoPlay}: ${this.videoTitle}`,
+        // );
         this.setAttribute('title', `${this.videoPlay}: ${this.videoTitle}`);
         if (this.autoLoad) {
             this.initIntersectionObserver();
@@ -249,6 +254,13 @@ export class LiteVimeoEmbed extends HTMLElement {
              *    allow="autoplay; fullscreen" allowfullscreen>
              *  </iframe>
              */
+            // // FIXME: add a setting for autoplay
+            // const apValue = ((this.autoLoad && this.autoPlay) || (!this.autoLoad)) ?
+            //                   "autoplay=1" : "";
+            // const srcUrl = new URL(
+            //   `/video/${this.videoId}?playlist=${this.videoId}&${apValue}&amp;autoplay=1&amp;controls=0&amp;loop=1&amp;rel=0&amp;showinfo=0&amp;autohide=1&amp;wmode=transparent&amp;hd=1&amp;mute=1&amp;muted=1&amp;background=1&amp;showinfo=0`,
+            //   "https://player.vimeo.com/"
+            // );
             const srcUrl = new URL(`https://player.vimeo.com/video/${this.videoId}`);
             srcUrl.searchParams.set('dnt', '1');
             if (this.autoLoad && this.autoPlay) {
